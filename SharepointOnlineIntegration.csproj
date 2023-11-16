@@ -12,7 +12,20 @@
     <PackageReference Include="Microsoft.SharePoint.Client.Online.CSOM" Version="15.0.4919.1000" />
     <PackageReference Include="Microsoft.SharePointOnline.CSOM" Version="16.1.24009.12000" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.SharePoint.Client.Runtime.Portable">
+      <HintPath>C:\Program Files\Common Files\microsoft shared\Web Server Extensions\16\ISAPI\Microsoft.SharePoint.Client.Runtime.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.Runtime.Windows">
+      <HintPath>C:\Program Files\Common Files\microsoft shared\Web Server Extensions\16\ISAPI\Microsoft.SharePoint.Client.Runtime.Windows.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\NewFolder\" />
   </ItemGroup>
 
 </Project>

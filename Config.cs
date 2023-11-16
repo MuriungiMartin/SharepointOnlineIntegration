@@ -9,33 +9,18 @@ namespace SharepointOnlineIntegration
         public struct DefaultResponse
         {
             public int status { get; set; }
-            public int resNumber { get; set; }
-            public bool res { get; set; }
             public string message { get; set; }
-            public string return_value { get; set; }
-            public string retvalue { get; set; }
-            public string dashvalue { get; set; }
-
             public object data { get; set; }
 
 
 
 
 
-            public DefaultResponse(int status, int resNumber, string message, object data = null, string return_value = null, bool res = false, string dashvalue = null)
+            public DefaultResponse(int status, string message, object data = null)
             {
                 this.status = status;
-                this.resNumber = resNumber;
                 this.message = message;
-                this.data = data;
-                this.return_value = return_value;
-                this.retvalue = return_value;
-                this.dashvalue = dashvalue;
-                this.res = res;
-
-
-
-
+                this.data = data;                
             }
             public struct JSONArrayResponse
             {
