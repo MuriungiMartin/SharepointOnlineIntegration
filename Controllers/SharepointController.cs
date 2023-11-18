@@ -403,4 +403,55 @@ public class SharepointController : ControllerBase
         }
     }
 
+    //delete file
+    [HttpPost("file:delete")]
+    public async Task<IActionResult> DeleteFile([FromBody] FileUpload Upload)
+    {
+        Config.DefaultResponse response = new Config.DefaultResponse();
+        try
+        {
+            string siteUrl = "https://healthstratcoke.sharepoint.com/sites/NavisionBusinessCentral";
+            var relativeFilePath = "/sites/NavisionBusinessCentral/Shared Documents" + Upload.FolderName + "/" + Upload.FileName;
+            var apiUrl = $"{siteUrl}/_api/web/GetFileByServerRelativePath(decodedurl='{relativeFilePath}')";
+
+            var accessTokenResult = await GetAccessToken();
+
+            if (accessTokenResult is ObjectResult accessTokenObjectResult && accessTokenObjectResult.Value is string accessToken)
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+                    httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    // Send HTTP DELETE request to delete the file
+                    var deleteResponse = await httpClient.DeleteAsync(apiUrl);
+
+                    if (deleteResponse.IsSuccessStatusCode)
+                    {
+                        var responseText = await deleteResponse.Content.ReadAsStringAsync();
+                        response = new Config.DefaultResponse(200, "Success", "File deleted successfully");
+                        return Ok(response);
+                    }
+                    else
+                    {
+                        var responseText = await deleteResponse.Content.ReadAsStringAsync();
+                        response = new Config.DefaultResponse(500, "Failed to delete file", responseText);
+                        return BadRequest(response);
+                    }
+                }
+            }
+            else
+            {
+                response = new Config.DefaultResponse(500, "Failed", "Something wrong occurred");
+                return BadRequest(response);
+            }
+        }
+        catch
+        {
+            response = new Config.DefaultResponse(500, "Failed", "Something wrong occurred");
+            return BadRequest(response);
+        }
+    }
+
+
 }
