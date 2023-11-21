@@ -58,9 +58,9 @@ public class SharepointController : ControllerBase
         {
             var url = "https://accounts.accesscontrol.windows.net/5188121f-030c-41a6-9dd4-5305dd6cbfb1/tokens/OAuth/2";
             var grantType = "client_credentials";
-            var clientId = "f761f316-3191-4b31-8876-815c5cf508df@5188121f-030c-41a6-9dd4-5305dd6cbfb1";
-            var clientSecret = "JSpj7kW4q1cCsUV/XFD8vittot1pBHRTIBLI3hlV0hI=";
-            var resource = "00000003-0000-0ff1-ce00-000000000000/healthstratcoke.sharepoint.com@5188121f-030c-41a6-9dd4-5305dd6cbfb1";
+            var clientId = "";
+            var clientSecret = "";
+            var resource = "";
 
             using (var httpClient = new HttpClient())
             {
@@ -114,7 +114,7 @@ public class SharepointController : ControllerBase
         Config.DefaultResponse response = new Config.DefaultResponse();
         try
         {
-            string siteUrl = "https://healthstratcoke.sharepoint.com/sites/NavisionBusinessCentral";
+            string siteUrl = "";
 
             var accessTokenResult = await GetAccessToken();
 
@@ -162,7 +162,7 @@ public class SharepointController : ControllerBase
         Config.DefaultResponse response = new Config.DefaultResponse();
         try
         {
-            string siteUrl = "https://healthstratcoke.sharepoint.com/sites/NavisionBusinessCentral";
+            string siteUrl = "";
 
             var accessTokenResult = await GetAccessToken();
 
@@ -360,7 +360,7 @@ public class SharepointController : ControllerBase
         Config.DefaultResponse response = new Config.DefaultResponse();
         try
         {
-            string siteUrl = "https://healthstratcoke.sharepoint.com/sites/NavisionBusinessCentral";
+            string siteUrl = "";
             var RelativeFilePath = "/sites/NavisionBusinessCentral/Shared Documents" + Upload.FolderName + "/" + Upload.FileName;
             var apiUrl = $"{siteUrl}/_api/web/GetFileByServerRelativePath(decodedurl='{RelativeFilePath}')/$value";
 
@@ -410,7 +410,7 @@ public class SharepointController : ControllerBase
         Config.DefaultResponse response = new Config.DefaultResponse();
         try
         {
-            string siteUrl = "https://healthstratcoke.sharepoint.com/sites/NavisionBusinessCentral";
+            string siteUrl = "";
             var relativeFilePath = "/sites/NavisionBusinessCentral/Shared Documents" + Upload.FolderName + "/" + Upload.FileName;
             var apiUrl = $"{siteUrl}/_api/web/GetFileByServerRelativePath(decodedurl='{relativeFilePath}')";
 
