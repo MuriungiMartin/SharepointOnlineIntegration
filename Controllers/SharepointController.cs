@@ -56,11 +56,13 @@ public class SharepointController : ControllerBase
 
         try
         {
-            var url = "https://accounts.accesscontrol.windows.net/5188121f-030c-41a6-9dd4-5305dd6cbfb1/tokens/OAuth/2";
+            
             var grantType = "client_credentials";
             var clientId = "";
             var clientSecret = "";
             var resource = "";
+            var tenantId = "";
+           var url = $"https://accounts.accesscontrol.windows.net/{tenantId}/tokens/OAuth/2";
 
             using (var httpClient = new HttpClient())
             {
@@ -348,7 +350,7 @@ public class SharepointController : ControllerBase
         }
         catch (Exception ex)
         {
-            var exceptionResponse = new Config.DefaultResponse(500,"Failed to upload file", "qwert");
+           var exceptionResponse = new Config.DefaultResponse(500,"Failed to upload file", ex.Message);
             return StatusCode(500, exceptionResponse);
         }
     }
